@@ -5042,11 +5042,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   GripSpeedFactor: 0.938
-  MaxGripValue: 73
+  MaxGripValue: 74
   RadiusWheel: 0.43
   SpringConstant: 50000
-  DamperConstant: 2000
-  RestLength: 0.5
+  DamperConstant: 2
+  RestLength: 0.25
   SpringTorqueForce: 1000
 --- !u!114 &901546174181050100
 MonoBehaviour:
@@ -11001,7 +11001,6 @@ GameObject:
   - component: {fileID: 5969442084905373162}
   - component: {fileID: 6588019448481925312}
   - component: {fileID: 8621600604177589522}
-  - component: {fileID: 5644920373178003305}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -11018,7 +11017,7 @@ Transform:
   m_GameObject: {fileID: 9158289964221074529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.16000009, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.82, y: 1.06, z: 5.42}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 938728970752853330}
@@ -11074,16 +11073,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5644920373178003305
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9158289964221074529}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

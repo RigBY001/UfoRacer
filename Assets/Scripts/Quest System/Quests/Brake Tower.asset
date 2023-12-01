@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816f865758c6c8c4da186c7fda03653f, type: 3}
+  m_Name: Brake Tower
+  m_EditorClassIdentifier: 
+  Text: Brake Tower
+  QuestsZone: {fileID: 6329956613990821657, guid: f1f1c986c0f35884aabdf2c7f9da0e58, type: 3}

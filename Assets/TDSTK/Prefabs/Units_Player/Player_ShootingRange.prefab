@@ -546,27 +546,13 @@ MonoBehaviour:
     critMultiplierMulGain: 0
     perkCurrencyGain: 0
     sumRecursively: 1
-    expTHM: 3
+    expTHM: 5
     expTHC: 9
     sumRecursively_Cached: 1
-    expTHM_Cached: 0
-    expTHC_Cached: 0
-    expThresholdList: 00000000090000001500000024000000360000004b000000630000007e0000009c000000bd000000e100000008010000320100005f0100008f010000c2010000f8010000310200006d020000ac020000
-    perkUnlockingAtLevelList:
-    - level: 3
-      perkIDList: 07000000
-    - level: 6
-      perkIDList: 0e000000
-    - level: 9
-      perkIDList: 0b000000
-    - level: 12
-      perkIDList: 0d000000
-    - level: 15
-      perkIDList: 0c000000
-    - level: 18
-      perkIDList: 05000000
-    - level: 20
-      perkIDList: 0f000000
+    expTHM_Cached: 5
+    expTHC_Cached: 9
+    expThresholdList: 0000000009000000170000002a000000420000005f00000081000000a8000000d4000000050100003b01000076010000b6010000fb0100004502000094020000e8020000410300009f03000002040000
+    perkUnlockingAtLevelList: []
   testVariable: 0
   player: {fileID: 0}
   init: 0

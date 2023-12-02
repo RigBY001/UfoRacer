@@ -170,7 +170,7 @@ MonoBehaviour:
   unitName: Drone
   desp: 
   level: 1
-  hitPointFull: 10
+  hitPointFull: 5
   hitPoint: 0
   startHitPointAtFull: 1
   hpRegenRate: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   startEnergyAtFull: 1
   armorType: 0
   anchorDown: 0
-  moveSpeed: 4
+  moveSpeed: 10
   brakeRange: 0
   rotateSpeed: 135
   target: {fileID: 0}
@@ -212,8 +212,8 @@ MonoBehaviour:
   contactCurrentCD: 0
   contactAttackStats:
     damageType: 0
-    damageMin: 4
-    damageMax: 6
+    damageMin: 2
+    damageMax: 3
     aoeRadius: 0
     diminishingAOE: 1
     critChance: 0
@@ -221,13 +221,13 @@ MonoBehaviour:
     impactForce: 2
     explosionRadius: 2.5
     explosionForce: 5
-    effectID: 8
+    effectID: -1
     effectIdx: -1
   valueCredits: 0
   valueScore: 1
   valueHitPoint: 0
   valueEnergy: 0
-  valueExp: 2
+  valueExp: 1
   valuePerkC: 0
   destroyCamShake: 1
   destroyedEffectObj: {fileID: 149084, guid: f389a0f3510469247b390d4e7279c638, type: 3}

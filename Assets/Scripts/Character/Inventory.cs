@@ -5,7 +5,7 @@ public class Inventory : MonoBehaviour{
     private HashSet<ItemType> _itemInventory;
     private void Start() {
         _itemInventory = new();
-        QuestController.OnQuestChainEnd+=ClearInventory;
+        _itemInventory.Add(ItemType.Auger);
     }
     public void ClearInventory() =>_itemInventory.Clear();
     

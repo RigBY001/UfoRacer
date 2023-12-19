@@ -14,6 +14,8 @@ namespace HUDIndicator {
 
 			indicatorsCanvas.Add(renderer, indicatorCanvasOnScreen);
 		}
+
+		
 	}
 
 }

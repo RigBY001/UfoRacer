@@ -1,57 +1,55 @@
 using System;
 using UnityEngine;
 using HFSM;
-
+using ZoneState;
+using HUDIndicator;
 
 public class MiningZone : MonoBehaviour{
+    [SerializeField] private PlayerScaner _playerScaner;
     [SerializeField] private GameObject _zoneOfOre;
     public GameObject ZoneOfOre=>_zoneOfOre;
-    [SerializeField] private GameObject _auger; 
-    public GameObject Auger=>_auger;
-    [SerializeField] private GameObject _boxOfOre;    
-    public GameObject BoxOfOre=>_boxOfOre;
-    [SerializeField] private GameObject _augerBrokenIndicator;    
-    public GameObject AugerBrokenIndicator=>_augerBrokenIndicator;
+    [SerializeField] private Auger _auger; 
+    public Auger Auger=>_auger;
+    [SerializeField] IndicatorBarOnScreen _progerssBar;
+    public IndicatorBarOnScreen ProgressBar=>_progerssBar;
+
     public GameObject Player {get;private set;}
 
     private MiningZoneStateMachine _mainStateMachine;
-    public Action OnPlayerEnter;
-
+ 
     private void Start() {
-        NoneAuger noneAuger = new(this);
-        Initial initial = new(this);
-        AugerNormal augerNormal = new(this);
-        FullOfOre fullOfOre = new(this);
+        _auger.Init();
         Empty empty = new(this);
-        AugerBroken augerBroken = new(this);
-        AugerCrash augerCrash = new(this);
+        Builiding building = new(this);
+        Installed installed = new(this);
 
-        _mainStateMachine = new (noneAuger,initial,augerNormal,fullOfOre,empty,
-        augerBroken,augerCrash);
+        _mainStateMachine = new (empty,building,installed,_auger.StateMachine);
         _mainStateMachine.Init();
 
-        OnPlayerEnter += noneAuger.AddEventTransition(initial,CheckPlayerInventory);
-        OnPlayerEnter += fullOfOre.AddEventTransition(empty);
-        initial.AddTransition(augerNormal,()=>initial.IsActive);
-        Garage.OnEnterGarge+= augerNormal.AddEventTransition(fullOfOre);
-        Garage.OnEnterGarge+= fullOfOre.AddEventTransition(augerBroken);
-        Garage.OnEnterGarge+= empty.AddEventTransition(augerBroken);
-        Garage.OnEnterGarge+= augerBroken.AddEventTransition(augerCrash);
-        OnPlayerEnter+= augerBroken.AddEventTransition(augerNormal);
-        augerCrash.AddTransition(noneAuger,()=>augerCrash.IsActive);
+        empty.AddTransition(building,CheckPlayerInventory);
+        building.AddEventTransition(empty,()=>Player == null);
+        building.OnBuilded += building.AddEventTransition(installed);
+        installed.OnInstaled += installed.AddEventTransition(_auger.StateMachine);
+       _auger.OnCrash += _auger.StateMachine.AddEventTransition(empty);
+
+       _playerScaner.OnPlayerEnter +=OnPlayerEnter;
+       _playerScaner.OnPlayerExit  +=OnPlayerExit;
     }
 
     private void Update() {
         _mainStateMachine.Update();
     }
-    private void OnTriggerEnter(Collider other) {
-        if(!other.CompareTag("Player")) return;
-        Player = other.gameObject;
-        OnPlayerEnter?.Invoke();
-    }
     private bool CheckPlayerInventory(){
-        Player.TryGetComponent(out Inventory inventory);
-        if(inventory.RemoveItem(ItemType.Auger)) return true;
+        if(Player == null) return false;
+        if(Player.TryGetComponent(out Inventory inventory)){
+        return inventory.HasItem(ItemType.Auger);
+        }
         return false;
+    }
+    private void OnPlayerEnter(){
+        Player = _playerScaner.Player;
+    }
+    private void OnPlayerExit(){
+        Player = null;
     }
 }

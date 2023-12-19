@@ -1,5 +1,6 @@
 public enum ItemType{
     Box,
     Gear,
-    Auger
+    Auger,
+    AugerUpdate
 }

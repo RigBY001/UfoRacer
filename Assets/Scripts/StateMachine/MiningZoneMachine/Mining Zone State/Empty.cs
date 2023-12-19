@@ -1,13 +1,15 @@
 using HFSM;
 
-public class NoneAuger : State{
+namespace ZoneState{
+public class Empty : State{
     private MiningZone _miningZone;
 
-    public NoneAuger(MiningZone miningZone){
+    public Empty(MiningZone miningZone){
         _miningZone = miningZone;
     }
     protected override void OnEnter(){
-        
+        _miningZone.Auger.Disable();
         _miningZone.ZoneOfOre.SetActive(true);
     }
+}
 }

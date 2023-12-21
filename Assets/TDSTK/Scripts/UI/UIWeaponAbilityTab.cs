@@ -262,13 +262,15 @@ namespace TDSTK_UI{
 			int abilityID=AbilityManager.GetSelectID();
 			if(newID==abilityID) return;
 			
-			Ability ability = AbilityDB.CloneItem1(newID);
+			Ability ability = Ability_DB.CloneItem(newID);
+			
 
 			if(_shop.HasBoughtAbility(ability.name)){
 				ActivateButton();
 				return;
 			}
 
+			Debug.Log(ability.ShopCost +" Shop COst");
 			if(_shop.BuyAbility(ability.ShopCost,ability.name)){
 				ActivateButton();
 				UpdateTab();

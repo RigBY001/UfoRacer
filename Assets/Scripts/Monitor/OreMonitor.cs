@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -12,10 +13,10 @@ public class OreMonitor : MonoBehaviour{
         var player = TDSTK.GameControl.GetPlayer();
         _playerInventory  = player.gameObject.GetComponent<Inventory>();
         if(_playerInventory== null) return;
-        _playerInventory.OnChangeOre += OnCahngeOre;
-        _oreMonitor.text = _playerInventory.Ore.ToString();
+        _playerInventory.Ore.OnChangeValue += OnCahngeOre;
+        _oreMonitor.text = _playerInventory.Ore.Value.ToString();
     }
     private void OnCahngeOre(){
-        _oreMonitor.text = _playerInventory.Ore.ToString();
+        _oreMonitor.text = _playerInventory.Ore.Value.ToString();
     }
 }

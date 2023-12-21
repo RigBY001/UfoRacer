@@ -6,7 +6,7 @@ using HUDIndicator;
 public class Auger : MonoBehaviour{
     [SerializeField] IndicatorBarOnScreen _progerssBar;
     public IndicatorBarOnScreen ProgressBar=>_progerssBar;
-    [SerializeField] private PlayerScaner _playerScaner;
+    [SerializeField] private Scaner _playerScaner;
     [SerializeField] private GameObject _model;
     [SerializeField] private int _maxAmountOfOre;
     public int MaxAmountOfOre =>_maxAmountOfOre;
@@ -32,13 +32,15 @@ public class Auger : MonoBehaviour{
         Broken augerBroken = new(this);
         Crash augerCrash = new(this);
         Repair repairAuger = new(this);
+        Update updateAuger = new (this);
+    
+        StateMachine = new ( augerNormal,updateAuger,fullOfOre,extractOre,empty,augerBroken,repairAuger,augerCrash);
 
-        StateMachine = new ( augerNormal,fullOfOre,extractOre,empty,augerBroken,repairAuger,augerCrash);
-        // StateMachine.Init();
         
         fullOfOre.AddTransition(extractOre,()=> Player != null);
         augerBroken.AddTransition(repairAuger,()=>Player != null);
         repairAuger.AddTransition(augerBroken,()=>Player == null);
+        augerNormal.AddTransition(updateAuger,CheckPlayerInventory);
 
         Garage.OnEnterGarge+= augerNormal.AddEventTransition(fullOfOre);
         Garage.OnEnterGarge+= fullOfOre.AddEventTransition(augerBroken);
@@ -48,8 +50,11 @@ public class Auger : MonoBehaviour{
 
         extractOre.OnDoneUnloading += extractOre.AddEventTransition(empty);
         repairAuger.OnRepair += repairAuger.AddEventTransition(augerNormal);
+        updateAuger.OnUpdated += updateAuger.AddEventTransition(augerNormal);
+
         _playerScaner.OnPlayerEnter += OnPlayerEnter;
         _playerScaner.OnPlayerExit  += OnPlayerExit;
+        updateAuger.OnUpdated += UpdateAuger;
     }
     public void Eneble(){
         _model.SetActive(true);
@@ -72,8 +77,23 @@ public class Auger : MonoBehaviour{
         }
         return _unloadingOreCount;
     }
+    private bool CheckPlayerInventory(){
+        if(Player == null) return false;
+        if(Player.TryGetComponent(out Inventory inventory)){
+        return inventory.HasItem(ItemType.AugerUpdate);
+        }
+        return false;
+    }
+    private void UpdateAuger(){
+        if(Player == null) return;
+        if(Player.TryGetComponent(out Inventory inventory))
+        if(inventory == null) return;
+        inventory.RemoveItem(ItemType.AugerUpdate);
+        _maxAmountOfOre *= 2;
+        _unloadingOreCount *= 2;
+    }
     private void OnPlayerEnter(){
-        Player = _playerScaner.Player;
+        Player = _playerScaner.ScanedObject;
     }
     private void OnPlayerExit(){
         Player = null;

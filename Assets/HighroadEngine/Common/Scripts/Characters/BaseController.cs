@@ -432,7 +432,7 @@ namespace MoreMountains.HighroadEngine
 			CurrentSteeringAmount = 0;
 			CurrentGasPedalAmount = 0;
 			_controllerId = controllerId;
-
+			
 			// If player is not a bot
 			if (_controllerId != -1) 
 			{

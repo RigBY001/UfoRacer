@@ -160,7 +160,7 @@ namespace MoreMountains.HighroadEngine
             base.Start();
             _startPosition = transform.position;
             _startRotation = transform.rotation;
-			EnableControls(0);
+			// EnableControls(0);
         }
 
         /// <summary>

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour{
     private HashSet<ItemType> _itemInventory;
-    public int Ore {get;private set;}
-    public Action OnChangeOre;
+    public Storage<int> Ore {get; private set;}
+   
+    private void Awake() {
+        Ore = new();
+    }
     private void Start() {
         _itemInventory = new()
         {
@@ -26,8 +29,12 @@ public class Inventory : MonoBehaviour{
         return false;
     }
     public void AddOre(int ore){
-        Ore += ore;
-        OnChangeOre?.Invoke();
+        Ore.Value += ore;
+    }
+    public int UnloadOre(){
+        int unloadOre = Ore.Value;
+        Ore.Value = 0;
+        return unloadOre;
     }
     private void OnDestroy() {
         QuestController.OnQuestChainEnd-=ClearInventory;

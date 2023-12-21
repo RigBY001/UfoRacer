@@ -54,7 +54,7 @@ namespace MoreMountains.HighroadEngine
 			{
 				// In game scenes, we use the same parameter as MobileTouchControls component
 				_mmTouchControls = MobileTouchControls.GetComponent<MMTouchControls>();
-			}			
+			}
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="controllerId">Controller identifier.</param>
 		/// <param name="p">Player</param>
 		public virtual void SetPlayer(int controllerId, IActorInput p) 
-		{
+		{				
 			_players[controllerId] = p;
 		}
 

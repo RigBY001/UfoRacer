@@ -5,7 +5,7 @@ using ZoneState;
 using HUDIndicator;
 
 public class MiningZone : MonoBehaviour{
-    [SerializeField] private PlayerScaner _playerScaner;
+    [SerializeField] private Scaner _playerScaner;
     [SerializeField] private GameObject _zoneOfOre;
     public GameObject ZoneOfOre=>_zoneOfOre;
     [SerializeField] private Auger _auger; 
@@ -47,7 +47,7 @@ public class MiningZone : MonoBehaviour{
         return false;
     }
     private void OnPlayerEnter(){
-        Player = _playerScaner.Player;
+        Player = _playerScaner.ScanedObject;
     }
     private void OnPlayerExit(){
         Player = null;

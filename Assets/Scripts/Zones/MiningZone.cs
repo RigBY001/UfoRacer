@@ -18,7 +18,6 @@ public class MiningZone : MonoBehaviour{
     private MiningZoneStateMachine _mainStateMachine;
  
     private void Start() {
-        _auger.Init();
         Empty empty = new(this);
         Builiding building = new(this);
         Installed installed = new(this);

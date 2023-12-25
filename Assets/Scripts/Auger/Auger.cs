@@ -23,7 +23,7 @@ public class Auger : MonoBehaviour{
     
     public GameObject Player{get;private set;}
   
-    public void Init() {
+    public void Start() {
         _currentAmountOfOre = 0;
         Normal augerNormal = new(this);
         FullOfOre fullOfOre = new(this);

@@ -1,10 +1,14 @@
 using System;
 using UnityEngine;
 using TDSTK;
-using TDSTK_UI;
 using MoreMountains.HighroadEngine;
+using GarageState;
+using HUDIndicator;
 
 public class Garage : MonoBehaviour{
+    [SerializeField] IndicatorBarOnScreen _progerssBar;
+    public IndicatorBarOnScreen ProgressBar=>_progerssBar;
+    [SerializeField] private Scaner _playerScaner;
     [SerializeField] private UnitPlayer _unitPlayer1;
     [SerializeField] private UnitPlayer _unitPlayer2;
     [SerializeField] private Monitor _oreMonitor;
@@ -15,6 +19,9 @@ public class Garage : MonoBehaviour{
     
     public static Garage Instance;
 
+    private GarageStateMachine _stateMachine;
+    public GameObject Player{get;private set;}
+
     private void Awake() {
         IsQuestChainEnd = false;
         OreStorege = new();
@@ -22,25 +29,36 @@ public class Garage : MonoBehaviour{
         Instance = this;
     }
     private void Start() {
+        Closed closed = new(this);
+        Opening opening = new(this);
+        PlayerEnter playerEnter = new(this);
+
+        _stateMachine = new(closed,opening,playerEnter);
+        _stateMachine.Init();
+
+        closed.AddTransition(opening,()=>Player != null);
+        opening.AddTransition(closed,()=>Player == null);
+
+        opening.OnOpened += opening.AddEventTransition(playerEnter);
+        
         _unitPlayer1.gameObject.GetComponent<SolidController>().EnableControls(1);
         GameControl.SetPlayer(_unitPlayer1);
         _oreMonitor.Init(OreStorege);
+
+        _playerScaner.OnPlayerEnter += OnPlayerEnter;
+        _playerScaner.OnPlayerExit  += OnPlayerExit;
+    }
+    private void OnPlayerEnter(){
+        Player = _playerScaner.ScanedObject;
+    }
+    private void OnPlayerExit(){
+        Player = null;
     }
     private void OnQuestChainEnd(){
         IsQuestChainEnd = true;
     }
-    private void OnTriggerEnter(Collider other) {
-        if(!other.CompareTag("Player")) return;
-        if(other.TryGetComponent(out Inventory inventory)) WorkWithInventory(inventory);
-        if(!UIWeaponAbilityTab.IsOn()) UIWeaponAbilityTab.TurnTabOn();
-        OnEnterGarge?.Invoke();
-    }  
-    private void WorkWithInventory(Inventory inventory){
-        OreStorege.Value += inventory.UnloadOre();
-        inventory.ClearInventory();
-    }
-    private void OnTriggerExit(Collider other) {
-        OnExitGarage?.Invoke();
+    private void Update(){
+        _stateMachine.Update();
     }
     public void ChangePlayer(){
         UnitPlayer currentPlayer = GameControl.GetPlayer();

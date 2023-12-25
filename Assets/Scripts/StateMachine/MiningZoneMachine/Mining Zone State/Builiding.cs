@@ -24,6 +24,7 @@ public class Builiding : State{
         _miningZone.ProgressBar.SetValue(_timer.Progress());
     }
     protected override void OnExit(){
+        UnityEngine.Debug.Log("On exit");
         _timer.Stop();
         _miningZone.ProgressBar.visible = false;
     }

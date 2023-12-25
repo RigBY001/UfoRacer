@@ -21,12 +21,12 @@ public class MiningZone : MonoBehaviour{
         Empty empty = new(this);
         Builiding building = new(this);
         Installed installed = new(this);
-
+        
         _mainStateMachine = new (empty,building,installed,_auger.StateMachine);
         _mainStateMachine.Init();
 
         empty.AddTransition(building,CheckPlayerInventory);
-        building.AddEventTransition(empty,()=>Player == null);
+        building.AddTransition(empty,()=>Player == null);
         building.OnBuilded += building.AddEventTransition(installed);
         installed.OnInstaled += installed.AddEventTransition(_auger.StateMachine);
        _auger.OnCrash += _auger.StateMachine.AddEventTransition(empty);

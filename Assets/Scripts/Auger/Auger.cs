@@ -23,7 +23,7 @@ public class Auger : MonoBehaviour{
     
     public GameObject Player{get;private set;}
   
-    public void Start() {
+    public void Awake() {
         _currentAmountOfOre = 0;
         Normal augerNormal = new(this);
         FullOfOre fullOfOre = new(this);
@@ -51,10 +51,12 @@ public class Auger : MonoBehaviour{
         extractOre.OnDoneUnloading += extractOre.AddEventTransition(empty);
         repairAuger.OnRepair += repairAuger.AddEventTransition(augerNormal);
         updateAuger.OnUpdated += updateAuger.AddEventTransition(augerNormal);
-
+        
+        updateAuger.OnUpdated += UpdateAuger;
+    }
+    private void Start(){
         _playerScaner.OnPlayerEnter += OnPlayerEnter;
         _playerScaner.OnPlayerExit  += OnPlayerExit;
-        updateAuger.OnUpdated += UpdateAuger;
     }
     public void Eneble(){
         _model.SetActive(true);

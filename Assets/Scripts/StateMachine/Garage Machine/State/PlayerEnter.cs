@@ -11,10 +11,10 @@ public class PlayerEnter : State{
         
     }
     protected override void OnEnter(){
-        // if(_garage.Player.TryGetComponent(out Inventory inventory)) WorkWithInventory(inventory);
-        // if(!UIWeaponAbilityTab.IsOn()) UIWeaponAbilityTab.TurnTabOn();
+        if(_garage.Player.TryGetComponent(out Inventory inventory)) WorkWithInventory(inventory);
+        if(!UIWeaponAbilityTab.IsOn()) UIWeaponAbilityTab.TurnTabOn();
         Garage.OnEnterGarge?.Invoke();
-        SceneManager.LoadScene("Garage",LoadSceneMode.Single);
+        // SceneManager.LoadScene("Garage",LoadSceneMode.Single);
     }
     private void WorkWithInventory(Inventory inventory){
         _garage.OreStorege.Value += inventory.UnloadOre();

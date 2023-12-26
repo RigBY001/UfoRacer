@@ -7,8 +7,8 @@ public class OreExchanger : MonoBehaviour{
     [SerializeField] private Shop _shop;
 
     private void Start() {
-        _playerScaner.OnPlayerEnter += OnPlayerEnter;
-        _playerScaner.OnPlayerExit += OnPlayerExit;
+        _playerScaner.OnEnter += OnPlayerEnter;
+        _playerScaner.OnExit += OnPlayerExit;
     }
     private void OnPlayerEnter(){
         Inventory inventory = _playerScaner.ScanedObject.GetComponent<Inventory>();

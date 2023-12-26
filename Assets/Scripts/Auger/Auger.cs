@@ -55,8 +55,8 @@ public class Auger : MonoBehaviour{
         updateAuger.OnUpdated += UpdateAuger;
     }
     private void Start(){
-        _playerScaner.OnPlayerEnter += OnPlayerEnter;
-        _playerScaner.OnPlayerExit  += OnPlayerExit;
+        _playerScaner.OnEnter += OnPlayerEnter;
+        _playerScaner.OnExit  += OnPlayerExit;
     }
     public void Eneble(){
         _model.SetActive(true);

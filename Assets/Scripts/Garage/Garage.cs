@@ -45,8 +45,8 @@ public class Garage : MonoBehaviour{
         GameControl.SetPlayer(_unitPlayer1);
         _oreMonitor.Init(OreStorege);
 
-        _playerScaner.OnPlayerEnter += OnPlayerEnter;
-        _playerScaner.OnPlayerExit  += OnPlayerExit;
+        _playerScaner.OnEnter += OnPlayerEnter;
+        _playerScaner.OnExit  += OnPlayerExit;
     }
     private void OnPlayerEnter(){
         Player = _playerScaner.ScanedObject;

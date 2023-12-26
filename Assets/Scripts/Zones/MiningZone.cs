@@ -31,8 +31,8 @@ public class MiningZone : MonoBehaviour{
         installed.OnInstaled += installed.AddEventTransition(_auger.StateMachine);
        _auger.OnCrash += _auger.StateMachine.AddEventTransition(empty);
 
-       _playerScaner.OnPlayerEnter +=OnPlayerEnter;
-       _playerScaner.OnPlayerExit  +=OnPlayerExit;
+       _playerScaner.OnEnter +=OnPlayerEnter;
+       _playerScaner.OnExit  +=OnPlayerExit;
     }
 
     private void Update() {

@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour{
             ItemType.Auger,
             ItemType.AugerUpdate
         };
+        Ore.Value = 200;
     }
     public void ClearInventory() =>_itemInventory.Clear();
     public bool HasItem(ItemType item)=>_itemInventory.Contains(item);

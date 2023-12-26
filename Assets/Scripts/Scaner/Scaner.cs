@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class Scaner : MonoBehaviour{
-    public Action OnPlayerEnter,OnPlayerExit;
+    public Action OnEnter,OnExit;
     public GameObject ScanedObject {get;private set;}
     [SerializeField] private string _tag;
 
@@ -13,12 +13,12 @@ public class Scaner : MonoBehaviour{
     private void OnTriggerEnter(Collider other) {
         if(!other.CompareTag(_tag)) return;
         ScanedObject = other.gameObject;
-        OnPlayerEnter?.Invoke();
+        OnEnter?.Invoke();
     }
     private void OnTriggerExit(Collider other) {
         if(!other.CompareTag(_tag)) return;
         ScanedObject = null;
-        OnPlayerExit?.Invoke();
+        OnExit?.Invoke();
     }
     
 }

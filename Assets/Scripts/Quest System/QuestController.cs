@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Events;
 using UnityEngine;
 using System;
 using TMPro;
@@ -15,7 +14,7 @@ public class QuestController : MonoBehaviour{
     private QuestsChain _currentQuestChain;
     public bool IsQuestStart=>_currentQuestChain != null;
     private LinkedListNode<QuestsZone> _currentQuestZone;
-    private const string _lastQuestGoal = "Back to base";  
+    [SerializeField] private string _lastQuestGoal;  
     public Action OnQuestStart,OnQuestEnd;
     public static Action OnQuestChainEnd;
 
@@ -23,11 +22,6 @@ public class QuestController : MonoBehaviour{
         _points = new ();
         _questsZonesInGame = new();
         foreach(Transform child in transform) _points.Add(child);
-        StartQuest();
-        Garage.OnEnterGarge+= StartQuest;
-    }
-    private void OnDestroy() {
-        Garage.OnEnterGarge-=StartQuest;
     }
     public void StartQuest(){
         if(IsQuestStart || _points.Count == 0 || _questsChains.Count == 0) return;
@@ -35,6 +29,10 @@ public class QuestController : MonoBehaviour{
         _currentQuestChain = _questsChains[UnityEngine.Random.Range(0,_questsChains.Count)];
         if(_currentQuestChain == null) return;
         StartCoroutine(InitializeQuest()); 
+    }
+    public void DisableQuestController(){
+        CancelQuestChain();
+        _questMonitor.text = "";
     }
     private void StartQuestHandler(){
 

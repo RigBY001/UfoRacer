@@ -12,7 +12,7 @@ public class MiningZone : MonoBehaviour{
     public Auger Auger=>_auger;
     [SerializeField] IndicatorBarOnScreen _progerssBar;
     public IndicatorBarOnScreen ProgressBar=>_progerssBar;
-
+    
     public GameObject Player {get;private set;}
 
     private MiningZoneStateMachine _mainStateMachine;

@@ -637,7 +637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 109.999985, y: 0}
+  m_AnchoredPosition: {x: 110, y: 0}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &234945876
@@ -2558,6 +2558,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647470349}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &671999698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7466057383295237433, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
+  m_PrefabInstance: {fileID: 1562327559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &765089169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4712,7 +4717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2231993013221031298, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.18
+      value: 58.6
       objectReference: {fileID: 0}
     - target: {fileID: 2231993013221031298, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4720,7 +4725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2231993013221031298, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.13
+      value: -9.4
       objectReference: {fileID: 0}
     - target: {fileID: 2231993013221031298, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4753,6 +4758,10 @@ PrefabInstance:
     - target: {fileID: 2231993013221031299, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_Name
       value: Zone of Ore (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780256981478915296, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
@@ -6309,7 +6318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22498776, guid: 8ae5dc0422f214a4286cbf30b8d29dce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.0008087
+      value: 4.9997253
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ae5dc0422f214a4286cbf30b8d29dce, type: 3}
@@ -6685,6 +6694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2231993012026770399, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
+      propertyPath: _roundZone
+      value: 
+      objectReference: {fileID: 671999698}
     - target: {fileID: 2231993013221031298, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -6732,6 +6745,14 @@ PrefabInstance:
     - target: {fileID: 2231993013221031299, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
       propertyPath: m_Name
       value: Zone of Ore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231993013538599185, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
+      propertyPath: visible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289643556962811405, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}
+      propertyPath: visible
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 640f23efb6fea1744acee39185bf6b28, type: 3}

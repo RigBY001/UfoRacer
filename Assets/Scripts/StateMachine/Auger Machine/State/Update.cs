@@ -8,7 +8,7 @@ public class Update : State{
     public Action OnUpdated;
     public Update(Auger auger){
         _auger = auger;
-        _timer = new(1f);
+        _timer = new(3f);
         _timer.timeOut.AddListener(()=>OnUpdated?.Invoke());
     }
     protected override void OnEnter(){

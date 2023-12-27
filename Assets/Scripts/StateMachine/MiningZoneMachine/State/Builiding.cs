@@ -10,7 +10,7 @@ public class Builiding : State{
 
     public Builiding(MiningZone miningZone){
         _miningZone = miningZone;
-        _timer = new (1f);
+        _timer = new (3f);
         _timer.timeOut.AddListener( ()=>OnBuilded?.Invoke());
     }
 

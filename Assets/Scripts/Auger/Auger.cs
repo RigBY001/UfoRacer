@@ -8,6 +8,7 @@ public class Auger : MonoBehaviour{
     public IndicatorBarOnScreen ProgressBar=>_progerssBar;
     [SerializeField] private Scaner _playerScaner;
     [SerializeField] private GameObject _model;
+    [SerializeField] private GameObject _roundZone;
     [SerializeField] private int _maxAmountOfOre;
     public int MaxAmountOfOre =>_maxAmountOfOre;
     [SerializeField] private int _unloadingOreCount;
@@ -55,6 +56,7 @@ public class Auger : MonoBehaviour{
         updateAuger.OnUpdated += UpdateAuger;
     }
     private void Start(){
+        _roundZone.SetActive(false);
         _playerScaner.OnEnter += OnPlayerEnter;
         _playerScaner.OnExit  += OnPlayerExit;
     }
@@ -96,8 +98,10 @@ public class Auger : MonoBehaviour{
     }
     private void OnPlayerEnter(){
         Player = _playerScaner.ScanedObject;
+        _roundZone.SetActive(true);
     }
     private void OnPlayerExit(){
         Player = null;
+        _roundZone.SetActive(false);
     }
 }

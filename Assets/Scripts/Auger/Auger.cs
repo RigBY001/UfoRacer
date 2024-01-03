@@ -41,6 +41,7 @@ public class Auger : MonoBehaviour{
         fullOfOre.AddTransition(extractOre,()=> Player != null);
         augerBroken.AddTransition(repairAuger,()=>Player != null);
         repairAuger.AddTransition(augerBroken,()=>Player == null);
+        updateAuger.AddTransition(augerNormal,()=>Player == null);
         augerNormal.AddTransition(updateAuger,CheckPlayerInventory);
 
         Garage.OnEnterGarge+= augerNormal.AddEventTransition(fullOfOre);

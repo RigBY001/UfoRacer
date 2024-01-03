@@ -142,7 +142,10 @@ namespace TDSTK{
 			ClearUnit();
 		}
 		private void ClearUnit(){
-			foreach(Unit unit in spawnedUnit) unit.ClearUnit(true);
+			foreach(Unit unit in spawnedUnit) {
+				if(unit == null) continue;
+				unit.ClearUnit(true);
+			}
 			spawnedUnit.Clear();
 		}
 	

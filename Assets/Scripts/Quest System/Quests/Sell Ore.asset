@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sell Ore
   m_EditorClassIdentifier: 
   Text: Sell Ore
-  QuestsZone: {fileID: 5738994525139179443, guid: 899a444f6fc600547b7859969f663c59, type: 3}
+  QuestsZone: {fileID: 654327990013079617, guid: 899a444f6fc600547b7859969f663c59, type: 3}

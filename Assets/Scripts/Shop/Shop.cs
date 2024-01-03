@@ -8,8 +8,10 @@ public class Shop : MonoBehaviour{
     private List<string> _boughtAbility;
     private List<string> _boughtWeapon;
     public Storage<int> Gold {get;private set;}
+    public static Shop Instance;
     
     private void Awake() {
+        Instance = this;
         _boughtAbility = new();
         _boughtWeapon = new();
         Gold = new();

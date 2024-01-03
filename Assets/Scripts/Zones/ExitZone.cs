@@ -1,13 +1,17 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ExitZone : MonoBehaviour{
-   public Action<Collider> OnEnter,OnExit;
-   private void OnTriggerEnter(Collider other) {
-        OnEnter?.Invoke(other);
-   }
-   private void OnTriggerExit(Collider other) {
-        OnExit?.Invoke(other);
-   }
+     [SerializeField] private Scaner _playerScaner;
+     [SerializeField] private SellArea _sellArea;
+     
+     private void Start() {
+          _playerScaner.OnEnter+=OnPlayerEnter;
+          _playerScaner.OnExit+=OnPlayerExit;
+     }
+
+     private void OnPlayerEnter(){
+          _sellArea.EndArea();
+     }
+     private void OnPlayerExit(){
+     }
 }

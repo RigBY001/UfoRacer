@@ -9,12 +9,10 @@ public class Garage : MonoBehaviour{
     [SerializeField] IndicatorBarOnScreen _progerssBar;
     public IndicatorBarOnScreen ProgressBar=>_progerssBar;
     [SerializeField] private Scaner _playerScaner;
-    [SerializeField] private UnitPlayer _unitPlayer1;
-    [SerializeField] private UnitPlayer _unitPlayer2;
     [SerializeField] private Monitor _oreMonitor;
     public static Action OnEnterGarge,OnExitGarage;
-    public Storage<int> OreStorege{get;private set;}
-    public Storage<int> GoldStorege{get;private set;}
+    public IntStorage OreStorage{get;private set;}
+    public IntStorage GoldStorage{get;private set;}
     public bool IsQuestChainEnd{get;private set;}
     
     public static Garage Instance;
@@ -24,8 +22,9 @@ public class Garage : MonoBehaviour{
 
     private void Awake() {
         IsQuestChainEnd = false;
-        OreStorege = new();
-        GoldStorege = new();
+        OreStorage = new(int.MaxValue);
+        OreStorage.Value = 200;
+        GoldStorage = new(int.MaxValue);
         Instance = this;
     }
     private void Start() {
@@ -38,13 +37,10 @@ public class Garage : MonoBehaviour{
 
         closed.AddTransition(opening,()=>Player != null);
         opening.AddTransition(closed,()=>Player == null);
-
-        opening.OnOpened += opening.AddEventTransition(playerEnter);
+        playerEnter.AddTransition(closed,()=>Player == null);
         
-        _unitPlayer1.gameObject.GetComponent<SolidController>().EnableControls(1);
-        GameControl.SetPlayer(_unitPlayer1);
-        _oreMonitor.Init(OreStorege);
-
+        opening.OnOpened += opening.AddEventTransition(playerEnter);
+        _oreMonitor.Init(OreStorage);
         _playerScaner.OnEnter += OnPlayerEnter;
         _playerScaner.OnExit  += OnPlayerExit;
     }
@@ -60,25 +56,14 @@ public class Garage : MonoBehaviour{
     private void Update(){
         _stateMachine.Update();
     }
-    public void ChangePlayer(){
-        UnitPlayer currentPlayer = GameControl.GetPlayer();
-        if(currentPlayer != _unitPlayer1) {
-            GameControl.SetPlayer(_unitPlayer1);
-            var controller =  _unitPlayer2.gameObject.GetComponent<SolidController>();
-            controller.DisableControls();
-            controller =  _unitPlayer1.gameObject.GetComponent<SolidController>();
-            controller.EnableControls(1);
-            Debug.Log(GameControl.GetPlayer().name);
-            return;
-        }
-        if(currentPlayer != _unitPlayer2) {
-            GameControl.SetPlayer(_unitPlayer2);
-            var controller =  _unitPlayer1.gameObject.GetComponent<SolidController>();
-            controller.DisableControls();
-            controller =  _unitPlayer2.gameObject.GetComponent<SolidController>();
-            controller.EnableControls(2);
-            Debug.Log(GameControl.GetPlayer().name);
-            return;
-        }
+    public void PrepareSellOre(){
+        PlayersManager.Instance.SetPlayer2();
+        PlayersManager.Instance.CurrentPlayer.Inventroy.AddOre(UnloadOre());
     }
+    public int UnloadOre(){
+        int unloadOre = OreStorage.Value;
+        OreStorage.Value = 0;
+        return unloadOre;
+    }
+   
 }

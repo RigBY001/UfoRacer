@@ -17,8 +17,7 @@ public class PlayerEnter : State{
         // SceneManager.LoadScene("Garage",LoadSceneMode.Single);
     }
     private void WorkWithInventory(Inventory inventory){
-        _garage.OreStorege.Value += inventory.UnloadOre();
-        inventory.ClearInventory();
+        _garage.OreStorage.Value += inventory.UnloadOre();
     }
 }
 }

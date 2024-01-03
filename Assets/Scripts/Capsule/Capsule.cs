@@ -9,9 +9,7 @@ public class Capsule : MonoBehaviour{
     [SerializeField] private Transform _endPoint;
     [SerializeField] private Scaner _playerScaner;
     [SerializeField] private GameObject _model;
-    [SerializeField] private Shop _shop;
-    public Shop Shop {get { return _shop;}}
-
+  
     private CapsuleStateMachine _stateMachine;
     public CapsuleStateMachine StateMachine{get{ return _stateMachine;}}
     

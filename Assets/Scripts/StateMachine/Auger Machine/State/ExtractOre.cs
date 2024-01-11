@@ -21,7 +21,6 @@ public class ExtractOre : State{
         if(_auger.Player == null || _playerInventory == null || _timer.IsRunning()) return;
         _playerInventory.AddOre(_auger.UnloadingOre());
         if(_auger.IsEmpty) OnDoneUnloading.Invoke();
-        _timer.Start();
     }
      protected override void OnExit(){
         _timer.Stop();

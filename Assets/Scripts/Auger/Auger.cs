@@ -16,6 +16,7 @@ public class Auger : MonoBehaviour{
     public GameObject BoxOfOre=>_boxOfOre;
     [SerializeField] private GameObject _augerBrokenIndicator;    
     public GameObject AugerBrokenIndicator=>_augerBrokenIndicator;
+    
     private int _currentAmountOfOre;
     public bool IsEmpty=>_currentAmountOfOre == 0;
 
@@ -26,35 +27,36 @@ public class Auger : MonoBehaviour{
   
     public void Awake() {
         _currentAmountOfOre = 0;
-        Normal augerNormal = new(this);
+        Normal normal = new(this);
         FullOfOre fullOfOre = new(this);
         ExtractOre extractOre = new(this);
         Empty empty = new(this);
-        Broken augerBroken = new(this);
+        Broken broken = new(this);
         Crash augerCrash = new(this);
-        Repair repairAuger = new(this);
-        Update updateAuger = new (this);
+        Repair repair = new(this);
+        Update update = new (this);
     
-        StateMachine = new ( augerNormal,updateAuger,fullOfOre,extractOre,empty,augerBroken,repairAuger,augerCrash);
+        StateMachine = new ( normal,update,fullOfOre,extractOre,empty,broken,repair,augerCrash);
 
         
         fullOfOre.AddTransition(extractOre,()=> Player != null);
-        augerBroken.AddTransition(repairAuger,()=>Player != null);
-        repairAuger.AddTransition(augerBroken,()=>Player == null);
-        updateAuger.AddTransition(augerNormal,()=>Player == null);
-        augerNormal.AddTransition(updateAuger,CheckPlayerInventory);
-
-        Garage.OnEnterGarge+= augerNormal.AddEventTransition(fullOfOre);
-        Garage.OnEnterGarge+= fullOfOre.AddEventTransition(augerBroken);
-        Garage.OnEnterGarge+= empty.AddEventTransition(augerBroken);
-        Garage.OnEnterGarge+= extractOre.AddEventTransition(augerBroken); 
-        Garage.OnEnterGarge+= augerBroken.AddEventTransition(augerCrash);
+        broken.AddTransition(repair,()=>Player != null);
+        repair.AddTransition(broken,()=>Player == null);
+        update.AddTransition(normal,()=>Player == null);
+        normal.AddTransition(update,CheckPlayerInventory);
+        normal.OnFulled+= normal.AddEventTransition(fullOfOre);
+        empty.OnEmpted += empty.AddEventTransition(normal);
+        // Garage.OnEnterGarge+= augerNormal.AddEventTransition(fullOfOre);
+        // Garage.OnEnterGarge+= fullOfOre.AddEventTransition(augerBroken);
+        // Garage.OnEnterGarge+= empty.AddEventTransition(augerBroken);
+        // Garage.OnEnterGarge+= extractOre.AddEventTransition(augerBroken); 
+        // Garage.OnEnterGarge+= augerBroken.AddEventTransition(augerCrash);
 
         extractOre.OnDoneUnloading += extractOre.AddEventTransition(empty);
-        repairAuger.OnRepair += repairAuger.AddEventTransition(augerNormal);
-        updateAuger.OnUpdated += updateAuger.AddEventTransition(augerNormal);
+        repair.OnRepair += repair.AddEventTransition(normal);
+        update.OnUpdated += update.AddEventTransition(normal);
         
-        updateAuger.OnUpdated += UpdateAuger;
+        update.OnUpdated += UpdateAuger;
     }
     private void Start(){
         _roundZone.SetActive(false);

@@ -9,7 +9,7 @@ public class Garage : MonoBehaviour{
     [SerializeField] IndicatorBarOnScreen _progerssBar;
     public IndicatorBarOnScreen ProgressBar=>_progerssBar;
     [SerializeField] private Scaner _playerScaner;
-    [SerializeField] private Monitor _oreMonitor;
+    [SerializeField] private StorageMonitor _oreMonitor;
     public static Action OnEnterGarge,OnExitGarage;
     public IntStorage OreStorage{get;private set;}
     public IntStorage GoldStorage{get;private set;}

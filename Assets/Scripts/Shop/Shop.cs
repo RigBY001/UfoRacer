@@ -4,7 +4,7 @@ using UnityEngine;
 using TDSTK;
 
 public class Shop : MonoBehaviour{
-    [SerializeField] private Monitor _goldMonitor;
+    [SerializeField] private StorageMonitor _goldMonitor;
     private List<string> _boughtAbility;
     private List<string> _boughtWeapon;
     public Storage<int> Gold {get;private set;}

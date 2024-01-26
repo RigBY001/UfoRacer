@@ -8,11 +8,11 @@ public class Normal:State{
     public Action OnFulled;
     public Normal(Auger miningZone){
         _auger = miningZone;
-        _timer = new Timer(5f);
+        _timer = new Timer(20f);
         _timer.timeOut.AddListener(()=>OnFulled?.Invoke());
     }
      protected override void OnEnter(){
-        _auger.ProgressBar.visible = true;
+        //_auger.ProgressBar.visible = true;
         _auger.ProgressBar.SetValue(0);
         _timer.Start();
     }
@@ -21,7 +21,7 @@ public class Normal:State{
     }
     protected override void OnExit(){
         _timer.Stop();
-        _auger.ProgressBar.visible = false;
+        //_auger.ProgressBar.visible = false;
     } 
 }
 }

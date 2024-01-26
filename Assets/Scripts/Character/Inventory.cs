@@ -14,8 +14,7 @@ public class Inventory : MonoBehaviour{
     private void Start() {
         _itemInventory = new()
         {
-            ItemType.Auger,
-            ItemType.AugerUpdate
+            ItemType.Auger
         };
     }
     public void ClearInventory() =>_itemInventory.Clear();

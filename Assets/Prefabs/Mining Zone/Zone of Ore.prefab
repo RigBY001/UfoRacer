@@ -776,7 +776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6970397360368071722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 9.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -798,10 +798,10 @@ MonoBehaviour:
   visible: 1
   renderers: []
   style:
-    texture: {fileID: 2800000, guid: 381450ef4d2fa564792412cf9cc929fa, type: 3}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    width: 30
-    height: 30
+    texture: {fileID: 2800000, guid: 44d7f08e05740154487d312cd803a33c, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    width: 32
+    height: 32
 --- !u!1 &7305626273794586943
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +849,8 @@ MonoBehaviour:
   visible: 1
   renderers: []
   style:
-    texture: {fileID: 2800000, guid: 84b4c828b929e3c4991c9d0b20cb3aab, type: 3}
-    color: {r: 1, g: 0, b: 0, a: 1}
+    texture: {fileID: 2800000, guid: a83f10ba26b639c4fb7e367162e8e5d0, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
     width: 32
     height: 32
   showArrow: 1
@@ -1359,6 +1359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5004394277306242229}
     m_Modifications:
+    - target: {fileID: 1214518535886102484, guid: 8a714b116b4ec654ebac965abc182fb1, type: 3}
+      propertyPath: startDelay.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1214518535904172596, guid: 8a714b116b4ec654ebac965abc182fb1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1415,9 +1419,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2053410972455947501, guid: 8a714b116b4ec654ebac965abc182fb1, type: 3}
+      propertyPath: startDelay.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2053410972456054653, guid: 8a714b116b4ec654ebac965abc182fb1, type: 3}
       propertyPath: startDelay.scalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2053410972456054653, guid: 8a714b116b4ec654ebac965abc182fb1, type: 3}
       propertyPath: SizeModule.enabled
@@ -1600,6 +1608,14 @@ PrefabInstance:
     - target: {fileID: 7261436137433995918, guid: 9130a95dcd04a9c4f9f91e9cb5911032, type: 3}
       propertyPath: visible
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261436137433995918, guid: 9130a95dcd04a9c4f9f91e9cb5911032, type: 3}
+      propertyPath: style.width
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261436137433995918, guid: 9130a95dcd04a9c4f9f91e9cb5911032, type: 3}
+      propertyPath: style.height
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7261436138332080030, guid: 9130a95dcd04a9c4f9f91e9cb5911032, type: 3}
       propertyPath: m_Name
